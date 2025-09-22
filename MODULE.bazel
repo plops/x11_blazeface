@@ -1,39 +1,38 @@
-# MODULE.bazel for our new independent project
-
 module(
     name = "blazeface_hermetic",
     version = "1.0",
 )
 
 # --- Bazel Central Registry (BCR) Dependencies ---
-# This is the modern, easy way to add common libraries.
-# Bazel will find these in the registry, download them, and configure them.
-bazel_dep(name = "libx11", version = "1.8.7")
-bazel_dep(name = "libxext", version = "1.3.5")
-bazel_dep(name = "libxfixes", version = "6.0.1")
+bazel_dep(name = "libx11", version = "1.8.12.bcr.1")
+#bazel_dep(name = "libxext", version = "1.3.5")
+#bazel_dep(name = "libxfixes", version = "6.0.1")
 
-# --- Git-based Dependencies (for projects not in the BCR) ---
-# LiteRT is not in the BCR, so we pull it directly from a Git repository.
-# We first need to load the `git_repository` rule from bazel_tools.
-bazel_dep(name = "bazel_tools", dev_dependency = True)
-use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+# --- Git-based Dependencies ---
+
+# First, depend on bazel_tools, which provides the repository rules.
+#bazel_dep(name = "bazel_tools")
+
+# Second, use `use_repo_rule` to get a callable proxy for the `git_repository` rule.
+
+git = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Now, define the LiteRT repository.
 # This will make a repository named `@litert` available to our project.
-# git_repository(
+# git(
 #     name = "litert",
 #     # Use a specific commit hash for a reproducible build
 #     commit = "7e0085a6a12518e959ef91448b1d9111b15743c5",
 #     remote = "https://github.com/google-ai-edge/LiteRT.git",
 # )
 
-# I had to make some modifications to compile LiteRT on my system. I stored these in
-# my own fork
 
-git_repository(
+
+# Now, call the proxy `git()` as if it were the `git_repository` function itself.
+git(
     name = "litert",
-    # This is the specific commit with a Gentoo fix
+    # This is the specific commit with my Gentoo fix
     commit = "01841adc08014117217ffdb39767abf109fb90c7",
-    # This is the URL of the fork
+    # This is the URL of my fork
     remote = "https://github.com/plops/LiteRT.git",
 )
