@@ -36,3 +36,11 @@ git(
     # This is the URL of my fork
     remote = "https://github.com/plops/LiteRT.git",
 )
+
+# --- Module Extension for LiteRT's Legacy Dependencies ---
+# Load our extension from the .bzl file we created.
+litert_ext = use_extension("//:litert_ext.bzl", "litert_deps")
+
+# "Use" the repositories defined inside the extension. This makes them
+# visible to the entire build graph, including @litert.
+use_repo(litert_ext, "bazel_skylib", "rules_shell", "rules_ml_toolchain", "rules_cc")

@@ -7,8 +7,18 @@ load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 def _litert_deps_impl(ctx):
     """
     This function re-declares the WORKSPACE dependencies needed by LiteRT.
-    It's a simplified version, containing only what's necessary for the C++ API.
     """
+    maybe(
+        http_archive,
+        name = "bazel_skylib",
+        sha256 = "a262c4a43697e0896792f3e8f804562540938459b7527636e053d260c6f1412b",
+        strip_prefix = "bazel-skylib-1.5.0",
+        urls = [
+            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
+            "https://github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
+        ],
+    )
+    
     maybe(
         http_archive,
         name = "rules_shell",
@@ -26,13 +36,6 @@ def _litert_deps_impl(ctx):
             "https://github.com/google-ml-infra/rules_ml_toolchain/archive/02fe7225d62af3036a541aa48b6f7bc86089ea5d.tar.gz",
         ],
     )
-
-    # Note: We don't define @org_tensorflow directly. LiteRT's own WORKSPACE file
-    # is complex. Instead, we let the @litert repo itself handle that part after
-    # we provide the necessary rule definitions. This is a bit of a hybrid approach.
-    # The key is providing the rules that LiteRT's BUILD files *load*.
-    # The error was about @rules_cc, which is brought in by @rules_ml_toolchain's WORKSPACE.bzl
-    # but let's be explicit.
 
     maybe(
         git_repository,
