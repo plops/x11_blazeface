@@ -6,16 +6,13 @@ cc_binary(
     name = "blazeface_hermetic",
     srcs = ["main.cc"],
     deps = [
-        # The main C++ API target from our @litert repository
+        # This target is now provided by the @litert defined in the WORKSPACE file.
         "@litert//litert/cc:litert_api_with_dynamic_runtime",
 
-        # The C++ code uses absl::Span. LiteRT pulls in Abseil,
-        # so we can depend on it here.
-        #"@com_google_absl//absl/types:span",
+        # This dependency is transitively brought in by @litert, so it's available.
+        "@com_google_absl//absl/types:span",
 
-        # The hermetic X11 libraries from the Bazel Central Registry
+        # These hermetic libraries come from the BCR via MODULE.bazel.
         "@libx11//:libx11",
-        #"@libxext//:libxext",
-        #"@libxfixes//:libxfixes",
     ],
 )

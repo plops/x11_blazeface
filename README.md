@@ -24,7 +24,7 @@ wget https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_sh
 ## Build
 Use Bazel from the repository root:
 ```
-bazel build //litert/samples/blazeface_app:blazeface_app --repo_env=USE_HERMETIC_CC_TOOLCHAIN=0
+bazel build //src:blazeface_hermetic --enable_workspace
 ```
 
 ## Run
