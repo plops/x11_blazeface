@@ -6,3 +6,7 @@ build --host_cxxopt=-std=c++20
 
 # Continue using the WORKSPACE resolution system for now.
 common --noenable_bzlmod
+
+# REQUIRED: Enable an experimental feature that TensorFlow's workspace
+# scripts depend on for evaluation.
+common --experimental_repo_remote_exec

@@ -1,2 +1,2 @@
 bazel clean --expunge
-bazel build  //:x11_blazeface
+bazel build  //src:x11_blazeface

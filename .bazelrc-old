@@ -113,8 +113,8 @@ build --incompatible_enforce_config_setting_visibility
 # Default options should come above this line.
 
 # Enforce clang as C/C++ compiler on Linux.
-build:linux --action_env=CC=clang
-build:linux --action_env=CXX=clang++
+#build:linux --action_env=CC=clang
+#build:linux --action_env=CXX=clang++
 
 # Android configs. Bazel needs to have --cpu and --fat_apk_cpu both set to the
 # target CPU to build transient dependencies correctly. See
