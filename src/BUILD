@@ -2,22 +2,25 @@
 #
 # This file defines how to build the application from its source code.
 
-# The cc_binary rule compiles and links the C++ source code to create an executable file.
-cc_binary(
-    # The 'name' is the name of the target and the resulting executable.
-    name = "x11_blazeface",
-
-    # 'srcs' lists the source files to be compiled.
-    srcs = ["main.cc"],
-
-    # 'deps' lists the libraries this target depends on.
+# Library that contains all LiteRT-related logic.
+cc_library(
+    name = "liblitert",
+    srcs = ["litert_model.cc"],
+    hdrs = ["litert_model.h"],
+    # Allow dynamic linking by disabling static linking for this library.
+    linkstatic = False,
+    visibility = ["//visibility:public"],
     deps = [
-        # LiteRT dependency for AI/face detection.
-        # This specific target is the main C++ library provided by LiteRT.
         "@litert//litert/cc:litert_api_with_dynamic_runtime",
+    ],
+)
 
-        # X11 dependencies for window capturing.
-        # These targets were defined in the new_local_repository rule in the WORKSPACE file.
+# X11 binary that links against the LiteRT library.
+cc_binary(
+    name = "x11_blazeface",
+    srcs = ["main.cc"],
+    deps = [
+        ":liblitert",
         "@xorg//:x11",
         "@xorg//:xext",
         "@xorg//:xfixes",
