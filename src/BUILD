@@ -1,18 +1,25 @@
-# src/BUILD.bazel
+# BUILD file for the x11_blazeface project.
+#
+# This file defines how to build the application from its source code.
 
-package(default_visibility = ["//visibility:public"])
-
+# The cc_binary rule compiles and links the C++ source code to create an executable file.
 cc_binary(
-    name = "blazeface_hermetic",
-    srcs = ["main.cc"],
+    # The 'name' is the name of the target and the resulting executable.
+    name = "x11_blazeface",
+
+    # 'srcs' lists the source files to be compiled.
+    srcs = ["src/main.cc"],
+
+    # 'deps' lists the libraries this target depends on.
     deps = [
-        # This target is now provided by the @litert defined in the WORKSPACE file.
-        "@litert//litert/cc:litert_api_with_dynamic_runtime",
+        # LiteRT dependency for AI/face detection.
+        # This specific target is the main C++ library provided by LiteRT.
+        "@litert//:litert",
 
-        # This dependency is transitively brought in by @litert, so it's available.
-        "@com_google_absl//absl/types:span",
-
-        # These hermetic libraries come from the BCR via MODULE.bazel.
-        "@libx11//:libx11",
+        # X11 dependencies for window capturing.
+        # These targets were defined in the new_local_repository rule in the WORKSPACE file.
+        "@xorg//:x11",
+        "@xorg//:xext",
+        "@xorg//:xfixes",
     ],
 )

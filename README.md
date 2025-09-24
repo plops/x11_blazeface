@@ -56,3 +56,52 @@ bazel build //src:blazeface_hermetic --enable_workspace
 
 ## License / Attribution
 - The model download link above comes from MediaPipe model storage. Respect the model license when using it.
+
+
+
+# LiteRT-LM
+
+- build takes 3min
+
+```
+I0000 00:00:1758744856.497065   56310 session_basic.cc:54] Benchmark is enabled.
+I0000 00:00:1758744856.497113   56310 threadpool.cc:86] ThreadPool 'engine': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1758744856.497116   56310 session_basic.cc:176] RunDecodeAsync
+I0000 00:00:1758744856.500380   56314 session_basic.cc:83] PrefillInternal: <start_of_turn>user
+What is the tallest building in the world?<end_of_turn>
+<start_of_turn>model
+
+I0000 00:00:1758744856.592803   56314 session_basic.cc:117] RunPrefillAsync status: OK
+I0000 00:00:1758744856.592869   56314 io_types.cc:317] Inference Done.
+
+As of today (October 26, 2023), the tallest building in the world belongs to **Burj Khalifa** located in Dubai.
+
+Here's why:
+
+*   **Height:** At an impressive height of approximately **828 meters (2721 feet)**
+*   **Location:** Dubai
+*   **Type:** This was an architectural marvel designed by Andre Juergen Juergens
+
+While other buildings have reached impressive heights (like the Shanghai Tower), Burj Khalifa holds its position as currently the tallest structure!I0000 00:00:1758744860.457236   56314 io_types.cc:317] Inference Done.
+
+I0000 00:00:1758744860.457295   56310 litert_lm_main.cc:193] BenchmarkInfo:
+  Init Phases (2):
+    - Executor initialization: 212.03 ms
+    - Tokenizer initialization: 0.00 ms
+    Total init time: 212.03 ms
+--------------------------------------------------
+  Prefill Turns (Total: 1):
+    Prefill Turn 1: Processed 18 tokens in 92.41119ms duration.
+      Prefill Speed: 194.78 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total: 1):
+    Decode Turn 1: Processed 115 tokens in 3.86435584s duration.
+      Decode Speed: 29.76 tokens/sec.
+--------------------------------------------------
+--------------------------------------------------
+
+I0000 00:00:1758744860.457492   56310 threadpool.cc:46] ThreadPool 'engine': Shutting down...
+I0000 00:00:1758744860.457505   56314 threadpool.cc:157] ThreadPool 'engine': Worker thread stopped.
+I0000 00:00:1758744860.457554   56310 threadpool.cc:65] ThreadPool 'engine': Shutdown complete. 
+
+```
