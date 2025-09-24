@@ -8,13 +8,13 @@ cc_binary(
     name = "x11_blazeface",
 
     # 'srcs' lists the source files to be compiled.
-    srcs = ["src/main.cc"],
+    srcs = ["main.cc"],
 
     # 'deps' lists the libraries this target depends on.
     deps = [
         # LiteRT dependency for AI/face detection.
         # This specific target is the main C++ library provided by LiteRT.
-        "@litert//:litert",
+        "@litert//litert/cc:litert_api_with_dynamic_runtime",
 
         # X11 dependencies for window capturing.
         # These targets were defined in the new_local_repository rule in the WORKSPACE file.
