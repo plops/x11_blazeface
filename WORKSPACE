@@ -40,7 +40,8 @@ load("@org_tensorflow//tensorflow:workspace3.bzl", "tf_workspace3")
 tf_workspace3()
 
 load("@org_tensorflow//tensorflow:workspace2.bzl", "tf_workspace2")
-tf_workspace2()
+# --- FIX: Disable GPU configuration, as it is not needed and causes an error. ---
+tf_workspace2(enable_gpu = False)
 
 load("@org_tensorflow//tensorflow:workspace1.bzl", "tf_workspace1")
 tf_workspace1()
