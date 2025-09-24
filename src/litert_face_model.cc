@@ -1,4 +1,4 @@
-#include "litert_model.h"
+#include "litert_face_model.h"  // changed: use new unique header name
 
 // Include LiteRT headers only in this translation unit.
 #include "absl/types/span.h" // Needed for writing to LiteRT buffers
@@ -9,7 +9,7 @@
 
 #include <memory>
 #include <vector>
-#include <stdexcept>
+// #include <stdexcept>
 #include <algorithm>
 
 struct LiteRTFaceModel::Impl {
@@ -103,4 +103,3 @@ std::vector<BoundingBox> LiteRTFaceModel::RunOnImage(
   }
   return faces;
 }
-
