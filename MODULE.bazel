@@ -1,7 +1,0 @@
-module(
-    name = "blazeface_hermetic",
-    version = "1.0",
-)
-
-# --- Bazel Central Registry (BCR) Dependencies ---
-bazel_dep(name = "libx11", version = "1.8.12.bcr.1")
