@@ -1,17 +1,17 @@
 #include "litert_face_model.h"  // changed: use new unique header name
 
 // Include LiteRT headers only in this translation unit.
-#include "absl/types/span.h" // Needed for writing to LiteRT buffers
-#include "litert/cc/litert_compiled_model.h"
-#include "litert/cc/litert_environment.h"
-#include "litert/cc/litert_macros.h"
-#include "litert/cc/litert_model.h"
+// #include "absl/types/span.h" // Needed for writing to LiteRT buffers
+// #include "litert/cc/litert_compiled_model.h"
+// #include "litert/cc/litert_environment.h"
+// #include "litert/cc/litert_macros.h"
+// #include "litert/cc/litert_model.h"
 
-#include <memory>
+// #include <memory>
 #include <vector>
 // #include <stdexcept>
-#include <algorithm>
-#include <optional>
+// #include <algorithm>
+// #include <optional>
 
 struct LiteRTFaceModel::Impl {
   explicit Impl() = default;
