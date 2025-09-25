@@ -27,6 +27,5 @@ public:
 
 private:
   struct Impl;
-  Impl* impl;  // Defined in litert_model.cc
+  Impl* impl;  // Defined in litert_face_model.cc
 };
-
